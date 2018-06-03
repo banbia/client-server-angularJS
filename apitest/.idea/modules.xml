@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../angular-symfony-3.dev/.idea/angular-symfony-3.dev.iml" filepath="$PROJECT_DIR$/../angular-symfony-3.dev/.idea/angular-symfony-3.dev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../api.symfony-3.crud/.idea/api.symfony-3.crud.iml" filepath="$PROJECT_DIR$/../api.symfony-3.crud/.idea/api.symfony-3.crud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/apitest.iml" filepath="$PROJECT_DIR$/.idea/apitest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../souk/.idea/souk.iml" filepath="$PROJECT_DIR$/../souk/.idea/souk.iml" />
+    </modules>
+  </component>
+</project>

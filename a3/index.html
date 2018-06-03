@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>a{cursor:pointer}</style>
+		<link href="main.css" rel="stylesheet"/>
+	</head>
+	<body ng-app="myapp">
+		<div ng-controller="Display">
+			<nav class="navbar navbar-default" >
+			  	<div class="container-fluid">
+				    <div class="navbar-header">
+				      <a class="navbar-brand" href="#">AngularA3</a>
+				    </div>
+				    <ul class="nav navbar-nav" ng-repeat="obj in myCats">
+				        <li><a ng-click="listByCat(obj.id)">{{obj.designation}}</a></li>
+				      
+				    </ul>
+			  	</div>
+			</nav>
+			  
+			<div class="container">
+			  	<div >
+			  		<section id="task-container">
+					    <ul id="task-list" ng-repeat="obj in myPosts">
+					      	<li class="col-md-6">
+					      		<p>{{obj.titre}}</p>
+					      		<span class="text-default">Posted At : {{obj.datePub}}</span>
+					      		<p>{{obj.description}}</p>
+					      	</li>
+					    </ul>
+					    
+				  	</section>
+			  	</div>
+
+			</div>
+		</div>	
+		
+		<script>
+		angular.module("myapp", [])
+			.controller("Display",function($scope,$http){
+				// 1 minute or 60 seconds or 60,000 milliseconds
+				var config = {
+		          	method : "GET",
+		          	url : "http://localhost:8001/categories",
+		          	timeout: 1*60 * 1000
+		     	};
+				
+				$http(config)
+			        .then(
+			           function mySuccess(response) {
+			            	$scope.myCats = response.data
+			            	console.log($scope.myCats);
+			            	
+			           },
+			           function myError(response)   {
+			             	$scope.myCats =   response.statusText;
+			         });
+		        var conf = {
+		          	method : "GET",
+		          	url : "http://localhost:8001/posts",
+		          	timeout: 1*60 * 1000
+		     	};
+				 
+				$http(conf)
+			        .then(
+			           function mySuccess(response) {
+			            	$scope.myPosts = response.data
+			            	console.log($scope.myPosts);
+			            	//return $scope.myPosts;
+			            	
+			           },
+			           function myError(response)   {
+			             	$scope.myPosts =   response.statusText;
+			         });
+		        $scope.listByCat =function($cat){
+				    console.log("id : "+$cat);
+					    var conf = {
+			          	method : "GET",
+			          	url : "http://localhost:8001/postsByCat/"+$cat,
+			          	timeout: 1*60 * 1000
+			     	};
+					 
+					$http(conf)
+				        .then(
+				           function mySuccess(response) {
+				            	$scope.myPosts = response.data
+				            	console.log($scope.myPosts);
+				            	//return $scope.myPosts;
+				            	
+				           },
+				           function myError(response)   {
+				             	$scope.myPosts =   response.statusText;
+				         });
+			  	}
+			})
+			
+
+			;
+		</script>
+	</body>
+</html>
+
